@@ -133,6 +133,7 @@ button.rules-button {
   position: fixed;
   bottom: 17px;
   right: 1rem;
+  z-index: 2;
 }
 
 .col-12.rules-container {
@@ -481,8 +482,8 @@ img.logo-login-page {
   top: 2rem;
 }
 .create-room .buttons-container {
-  min-height: 100vh;
-  display: flex;
+  min-height: 96vh;
+    display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -494,9 +495,7 @@ img.logo-login-page {
   margin-left: 1rem;
 }
 .create-form span {
-  position: absolute;
   color:#d02c4f;
-  top: -13px;
 }
 .create-form{
   position: relative;
@@ -532,7 +531,7 @@ img.logo-login-page {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  min-height: 90vh;
 }
 .intro button {
   background: none;

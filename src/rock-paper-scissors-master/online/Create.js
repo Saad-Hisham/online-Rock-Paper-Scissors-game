@@ -102,8 +102,10 @@ function Create() {
                 <img src={logo} alt="rock paper scissors" />
             </div>
             <div className="buttons-container">
+
                 <div className="create-form">
-                    {err != "" ? <span>{err}</span> : null}
+                   
+                    <div>  {err != "" ? <span>{err}</span> : null}</div>
                     <input
                         type="text"
                         placeholder={"Enter room name"}

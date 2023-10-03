@@ -89,9 +89,13 @@ function App() {
 
       </Routes>
 
-    <footer>  <div class="attribution">
-    Created with ❤️ by <a href="https://www.frontendmentor.io/profile/Saad-Hisham">Saad Hesham😼</a>.
-  </div></footer>
+
+      <footer>
+        <div class="attribution">
+          Challenge by <a href="https://www.frontendmentor.io/profile/Saad-Hisham" target="_blank">Frontend Mentor</a>.
+          Coded with ❤️ by <a href="#">Saad Hesham😼</a>.
+        </div>
+      </footer>
     </div>
   );
 }

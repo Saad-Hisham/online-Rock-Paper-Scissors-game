@@ -10,6 +10,7 @@ function ResultOnline() {
   const [roomData, setRoomData] = useState(null);
   const [win, setWin] = useState("")
   const [roomId, setRoomId] = useState("")
+  const [show, SetShow] = useState(false)
   const imageMap = {
     rock: rock,
     paper: paper,
@@ -37,30 +38,14 @@ function ResultOnline() {
     };
   }, []);
 
-  const controls = useAnimation();
-  const controlsTwo = useAnimation();
 
-  useEffect(() => {
-    const sequenceAnimation = async () => {
-      await controls.start({ x: "5vw", scale: 0, y: "20vh" });
-      await controls.start({ x: "10vw", y: "-20vh", scale: 1.2, transition: { duration: 0.5, ease: "easeInOut" } });
-      await controls.start({ x: "0vw", y: "0vh", scale: 1, transition: { duration: 0.5, ease: "linear" } });
-    };
 
-    sequenceAnimation();
-  }, [controls]);
 
-  useEffect(() => {
-    const sequenceAnimation = async () => {
-      await controlsTwo.start({ x: "5vw", scale: 0, y: "20vh", transition: { duration: 0.5, ease: "easeInOut", delay: 1 } });
-      await controlsTwo.start({ x: "10vw", y: "-20vh", scale: 1.2, transition: { duration: 0.5, ease: "easeInOut" } });
-      await controlsTwo.start({ x: "0vw", y: "0vh", scale: 1, transition: { duration: 0.5, ease: "linear" } });
-    };
 
-    sequenceAnimation();
-  }, [controlsTwo]);
+
 
   const playAgain = async () => {
+
     const roomsCollection = collection(database, "rooms");
     const roomQuery = query(roomsCollection, where("roomName", "==", localStorage.getItem("roomInfo")));
     const roomQuerySnapshot = await getDocs(roomQuery);
@@ -69,8 +54,6 @@ function ResultOnline() {
 
     roomQuerySnapshot.forEach(async (docSnapshot) => {
       const roomData = docSnapshot.data();
-
-      console.log(roomData.id)
 
       for (let i = 0; i < roomData.players.length; i++) {
         if (roomData.players[i].playerId == JSON.parse(localStorage.getItem("userInfo")).id) {
@@ -111,6 +94,8 @@ function ResultOnline() {
 
       if (player1Play === "rock" && player2Play === "paper") {
         setWin(`${playerTwo.p1} wins`);
+        SetShow(true)
+
         // Update the player's score
         playerTwo.score += 1;
         updateScore()
@@ -118,6 +103,8 @@ function ResultOnline() {
 
       if (player1Play === "rock" && player2Play === "rock") {
         setWin(`TIE`);
+        SetShow(true)
+
         // Update the player's score
         updateScore()
       }
@@ -125,6 +112,8 @@ function ResultOnline() {
 
       if (player1Play === "paper" && player2Play === "rock") {
         setWin(`${playerOne.p1} wins`);
+        SetShow(true)
+
         playerOne.score += 1;
         // Update the player's score
         updateScore()
@@ -133,6 +122,8 @@ function ResultOnline() {
 
       if (player1Play === "paper" && player2Play === "scissors") {
         setWin(`${playerTwo.p1} wins`);
+        SetShow(true)
+
         // Update the player's score
         playerTwo.score += 1;
         updateScore()
@@ -140,12 +131,16 @@ function ResultOnline() {
 
       if (player1Play === "paper" && player2Play === "paper") {
         setWin(`TIE`);
+        SetShow(true)
+
         // Update the player's score
         updateScore()
       }
 
       if (player1Play === "scissors" && player2Play === "paper") {
         setWin(`${playerTwo.p1} wins`);
+        SetShow(true)
+
         playerOne.score += 1;
         // Update the player's score
         updateScore()
@@ -154,12 +149,16 @@ function ResultOnline() {
 
       if (player1Play === "scissors" && player2Play === "scissors") {
         setWin(`TIE`);
+        SetShow(true)
+
         // Update the player's score
         updateScore()
       }
 
       if (player1Play === "scissors" && player2Play === "rock") {
         setWin(`${playerTwo.p1} wins`);
+        SetShow(true)
+
         playerTwo.score += 1;
         // Update the player's score
         updateScore()
@@ -168,7 +167,8 @@ function ResultOnline() {
   }, [roomData?.[0]?.players?.[0]?.play, roomData?.[0]?.players?.[1]?.play]);
   return (
     <div className="container result-page">
-      {/* <AnimationComponent /> */}
+     
+      {roomData!=null && roomData[0].players[0].playagain==false && roomData[0].players[1].playagain==false && show?<AnimationComponent /> :null}
 
       <div className="row">
         <div className="col-4">
@@ -177,14 +177,15 @@ function ResultOnline() {
 
             </div>
             {roomData != null && roomData[0].players[0].playagain == true ? <div className="p-a">want to play again</div> : null}
-            <p>{roomData != null ? roomData[0].players[0].p1 : "player one picked"} </p>
+            <p>{roomData != null ? `${roomData[0].players[0].p1} picked` : "player one picked"} </p>
             {roomData != null && roomData[0].players[0].play != "" ?
 
               <motion.div
                 initial={{ x: "5vw", scale: 1.5, y: "20vh" }}
                 animate={{ x: 0, scale: 1, y: 0, transition: { duration: .5, ease: "linear" } }}
+                className={roomData != null ? `pick-section ${roomData[0].players[0].play}-result ${win.includes(roomData[0].players[0].p1) ? "winner" : ""}` : "rock"}>
 
-                className={roomData != null ? `pick-section ${roomData[0].players[0].play}-result` : "rock"}>
+                  
                 <div className="first-layer"> </div>
                 <div className="second-layer"
 
@@ -207,11 +208,11 @@ function ResultOnline() {
             </h2>
             {roomData != null && roomData[0].players[0].play != "" && roomData[0].players[1].play != "" ? <button onClick={() => {
               playAgain()
-            }}>play again</button> 
-            
-          
-            : null}
-           
+            }}>play again</button>
+
+
+              : null}
+
 
           </div>
 
@@ -227,7 +228,7 @@ function ResultOnline() {
                 initial={{ x: "5vw", scale: 1.5, y: "20vh" }}
                 animate={{ x: 0, scale: 1, y: 0, transition: { duration: .5, ease: "linear" } }}
 
-                className={roomData != null ? `pick-section ${roomData[0].players[1].play}-result` : "rock"}>
+                className={roomData != null ? `pick-section ${roomData[0].players[1].play}-result ${win.includes(roomData[0].players[1].p1) ? "winner" : ""}` : "rock"}>
                 <div className="first-layer"> </div>
                 <div className="second-layer"
 

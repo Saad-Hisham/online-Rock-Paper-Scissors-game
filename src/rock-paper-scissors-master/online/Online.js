@@ -34,7 +34,7 @@ function Online() {
 
   const filterd = roomData != null ? roomData[0].players.filter(player => player.playerId == JSON.parse(localStorage.getItem("userInfo")).id) : null;
   return (
-    <div>
+    <div className="parent-online">
          {roomData !== null && roomData[0].leave !== "" && (
         <div className="leave-container">
           <motion.div
@@ -47,10 +47,7 @@ function Online() {
           </motion.div>
         </div>
       )}
-         {roomData != null && roomData[0].players[0].play != "" && roomData[0].players[1].play != "" ? 
-            <AnimationComponent/>
-            
-            : null}
+       
       <ScoreBoardOnline />
 
       {filterd != null && filterd[0].play == "" || filterd != null&&roomData[0].players[0].playagain==true&&roomData[0].players[1].playagain==true ? <SelectPageOnline /> : <ResultOnline />}
