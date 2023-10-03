@@ -547,3 +547,7 @@ img.logo-login-page {
   color: black;
  
 }
+.parent-online .button-container-play {
+    margin-top: 5rem;
+    z-index: 2;
+}
