@@ -1,0 +1,116 @@
+
+@media (max-width:842px) {
+    .p-a {
+        color: #5cbb5c;
+        margin-left: 0rem;
+        width: 8rem;
+    }
+    .pick-section img {
+        min-width: 3rem;
+    }
+    .pick-section {
+        max-width: 129px;
+        min-height: 129px;
+        margin: auto;
+        margin-top: 3rem;
+    }
+
+    .container.result-page>.row {
+        width: 100%;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .container.result-page p {
+        font-size: 11px;
+    }
+    .col-4.condition {
+        position: absolute;
+        top: 80%;
+        left: 0;
+        min-width: 100vw;
+        display: flex;
+        justify-content: center;
+    
+    }
+  
+}
+
+@media (max-width:480px) {
+    .login-page form button, .buttons-container button {
+        min-width: 12rem;
+        margin-left: 3rem;
+    }
+    .create-room .buttons-container {
+        margin: auto;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        max-width: 17rem;
+    }
+    .create-room .buttons-container >div{
+        margin-top: 2rem;
+    }
+    .avatar-container p {
+        font-size:12px;
+        margin: auto 5px;
+    }
+
+    /* resize the buttons on mobile screen */
+    section.container button {
+        min-width: 120px;
+        min-height: 120px;
+    }
+
+    /* reset the size and position of bakcground on mobile screen */
+    section.container {
+        background-position: 50% 63%;
+        background-size: 210px 179px;
+    }
+
+    /* small fix to rock button on mobile screen */
+    .col-6.paper-col {
+        display: flex;
+        justify-content: end;
+    }
+
+    .score-container.col-6 {
+        max-width: 96px;
+        max-height: 110px;
+    }
+
+    .col-12.rules-container {
+        min-width: 100vw;
+        min-height: 100vh;
+
+    }
+
+    .rulse-header img {
+        position: absolute;
+        left: 50%;
+        bottom: 50px;
+    }
+
+    .rulse-header h1 {
+        width: 100%;
+        text-align: center;
+        text-transform: uppercase;
+        color: #394261;
+    }
+
+    .pick-section {
+        min-width: 107px;
+        min-height: 107px;
+        margin: auto;
+    }
+    .pick-section img{
+        width: 2rem;
+    }
+    .pick-section {
+        max-width: 9rem;
+        min-height: 7rem;
+  
+    }
+}
