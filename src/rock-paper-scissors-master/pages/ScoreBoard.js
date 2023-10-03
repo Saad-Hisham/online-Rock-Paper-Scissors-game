@@ -13,7 +13,7 @@ return(
       <p>
         <span>score</span>
         <br></br>
-        <span>{localStorage.getItem(score)!=null ? 0 :JSON.parse(localStorage.getItem("score"))/2}</span>
+        <span>{localStorage.getItem(score)!=null ? 0 :JSON.parse(localStorage.getItem("score"))}</span>
         
       </p>
     </div>
