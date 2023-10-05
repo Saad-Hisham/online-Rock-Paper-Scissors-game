@@ -551,3 +551,16 @@ img.logo-login-page {
     margin-top: 5rem;
     z-index: 2;
 }
+.home{
+  background: none;
+  border: 1px solid white;
+  color: white;
+  padding: .5rem 1rem;
+  margin-left: .5rem;
+
+}
+.home:hover{
+  background: white;
+  color: black;
+
+}
