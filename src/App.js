@@ -17,6 +17,7 @@ function App() {
   const room = localStorage.getItem("roomInfo");
   const dispatch = useDispatch()
   const [name, setName] = useState("")
+  const [path, setPath] = useState("")
   const leaveRoom = async () => {
     const RoomName = localStorage.getItem("roomInfo")
     const roomsCollection = collection(database, "rooms");
@@ -58,6 +59,7 @@ function App() {
       localStorage.setItem("roomInfo", null)
     }
     const pathname = window.location.pathname// returns the absolute URL of a page
+    setPath(pathname)
     if (!localStorageData && pathname == "/online" || !localStorageData && pathname == "/create") {
       navigate("/login");
     }
@@ -69,6 +71,7 @@ function App() {
       localStorage.setItem("roomInfo", null)
 
     }
+
     window.addEventListener('beforeunload', function (e) {
       e.preventDefault();
       leaveRoom()
@@ -89,6 +92,11 @@ function App() {
 
       </Routes>
 
+      {path != "/" ? <button className="home"
+      onClick={()=>{
+        navigate("/")
+      }}
+      >Home</button> : null}
 
       <footer>
         <div class="attribution">
